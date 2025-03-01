@@ -29,8 +29,6 @@ font = pygame.font.Font(None, 128)
 pygame.mixer.init()
 pygame.mixer.music.load(resource_path('app/assets/sfx/fon.mp3'))
 pygame.mixer.music.play(-1)
-enemy_sound = pygame.mixer.Sound(resource_path('app/assets/sfx/enemy.mp3'))
-reload_sound = pygame.mixer.Sound(resource_path('app/assets/sfx/reload.mp3'))
 
 
 fon = Fon(fon_sprites, all_sprites)
@@ -107,6 +105,7 @@ def easy_game():
         player_sprites.draw(screen)
         progressBar_sprites.draw(screen)
         screen.blit(font.render(f"{player.bullets}/{CNT_BULLETS}", True, (255, 201, 15)), (WIDTH - 150, HEIGHT - 100))
+        screen.blit(font.render(f"{player.health}/{HEALTH}", True, (255, 0, 0)), (10, 10))
         
         
         pygame.display.flip()

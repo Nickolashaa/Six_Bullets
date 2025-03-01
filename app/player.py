@@ -23,8 +23,7 @@ class Player(pygame.sprite.Sprite):
         self.frame_counter = 0
         self.bullet_image = load_image('app/assets/bullets/player_bullet.png')
         self.health = HEALTH
-        
-        
+
     def update(self, fon):
         if self.health <= 0:
             lose()
@@ -58,16 +57,17 @@ class Player(pygame.sprite.Sprite):
             self.status = 'Idle'
 
         self._update_image()
-                
+
     def take_bullet(self, bullet):
         if self.bullets < CNT_BULLETS:
-            pygame.mixer.Sound(resource_path('app/assets/sfx/reload.mp3')).play()
+            pygame.mixer.Sound(resource_path(
+                'app/assets/sfx/reload.mp3')).play()
             self.bullets += 1
             bullet.kill()
-            
+
     def get_coordinate(self):
         return self.rect.x + self.rect.width // 2, self.rect.y + self.rect.height // 2
-    
+
     def _update_image(self):
         frame_width = 128
         frame_height = 128
@@ -75,6 +75,7 @@ class Player(pygame.sprite.Sprite):
         frame_count = self.images[self.status][0]
 
         frame_x = (self.cnt % frame_count) * frame_width
-        self.image = sprite_sheet.subsurface(pygame.Rect(frame_x, 0, frame_width, frame_height)).copy()
+        self.image = sprite_sheet.subsurface(pygame.Rect(
+            frame_x, 0, frame_width, frame_height)).copy()
 
         self.rect.size = (frame_width, frame_height)

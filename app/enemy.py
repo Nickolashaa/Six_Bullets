@@ -1,6 +1,6 @@
 import pygame
 from random import randint
-from app.functions import load_image
+from app.functions import load_image, resource_path
 
 
 class Enemy(pygame.sprite.Sprite):
@@ -24,6 +24,8 @@ class Enemy(pygame.sprite.Sprite):
         
         if self.rect.colliderect(self.target.rect):
             self.target.health -= 1
+            pygame.mixer.Sound(resource_path(
+                'app/assets/sfx/damage.mp3')).play()
             self.kill()
         
         target_pos = pygame.Vector2(self.target.rect.center)
